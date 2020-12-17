@@ -1,0 +1,61 @@
+<!-- templates/home.html-->
+
+  	<img src="/media/viajero_frecuente_title.png" width="auto" height="auto" title="Crea un viaje" alt="Viaje Nuevo" />
+	<BR />
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<BR />
+  Hola {{ user.username }}!! 
+  <BR />
+  Califica a las personas de tu viaje!
+  <BR />
+  <BR />
+<form action="/ViajeroFrecuente/setqualification" method="post">{% csrf_token %}
+{% if enablefield1 %}
+    {{ username1 }}  <input type="text" name="input1" value=""><br>
+{% endif %}
+
+{% if enablefield2 %}
+    {{ username2 }}  <input type="text" name="input2" value=""><br>
+{% endif %}
+
+{% if enablefield3 %}
+    {{ username3 }}  <input type="text" name="input3" value=""><br>
+{% endif %}
+
+{% if enablefield4 %}
+    {{ username4 }}  <input type="text" name="input4" value=""><br>
+{% endif %}
+
+{% if enablefield5 %}
+    {{ username5 }}  <input type="text" name="input5" value=""><br>
+{% endif %}
+
+{% if enablefield6 %}
+    {{ username6 }}  <input type="text" name="input6" value=""><br>
+{% endif %}
+
+{% if enablefield7 %}
+    {{ username7 }}  <input type="text" name="input7" value=""><br>
+{% endif %}
+
+{% if enablefield8 %}
+    {{ username8 }}  <input type="text" name="input8" value=""><br>
+{% endif %}
+
+<input type="hidden" id="tripid" name="tripid" value="{{ trip }}">
+<BR />
+  <input type="submit" value="Enviar!">
+</form>
+
+  <BR />
+  
+  <p><a href="{% url 'main' %}">Inicio</a>      
+  <a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}

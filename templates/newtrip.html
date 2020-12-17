@@ -1,0 +1,28 @@
+
+  	<img src="/media/viajero_frecuente_title.png" width="auto" height="auto" title="Crea un viaje" alt="Viaje Nuevo" />
+	<BR />
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<BR />
+  Hola {{ user.username }}!! 
+  <BR />
+  <BR />
+	<img src="/media/home_button_nuevo-viaje.png" width="auto" height="auto" title="Crea un viaje" alt="Viaje Nuevo">
+  <BR />
+  <BR />
+  	
+    <form action="/ViajeroFrecuente/newtrip" method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <input type="submit" value="Crear!">
+	</form>
+  
+  <p><a href="{% url 'main' %}">Inicio</a>      
+  <a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}

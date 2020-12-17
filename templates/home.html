@@ -1,0 +1,38 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Viajero Frecuente - Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<BR />
+	Tenes {{ user_credits }} credito(s) para utilizar.	
+<BR />
+	Tu calificacion acutal es: {{ user_rating }}.
+<BR />
+
+  {% if has_active_trips %}
+    <BR />
+	<a href="../ViajeroFrecuente/triplist"><img src="/media/home_button_viajes-disponibles.png" width="auto" height="auto" title="Viajes Disponibles" alt="Viajes"></a>
+    <BR />
+    <BR />
+  {% endif %}
+
+  {% if has_no_vehicle %}
+    <BR />
+	<a href="../ViajeroFrecuente/newvehicle"><img src="/media/home_button_agregar-tu-vehiculo.png" width="auto" height="auto" title="Agregar tu vehiculo" alt="Vehiculo Nuevo"></a>
+    <BR />
+    <BR />
+  {% else %}
+  	<BR />
+	<a href="../ViajeroFrecuente/newtrip"><img src="/media/home_button_nuevo-viaje.png" width="auto" height="auto" title="Crea un viaje" alt="Viaje Nuevo"></a>
+    <BR />
+    <BR />
+  {% endif %}
+  
+  <p><a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}

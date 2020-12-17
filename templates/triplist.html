@@ -1,0 +1,21 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Viajero Frecuente - Lista de Viajes{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h2>Viajes en curso:</h2>
+    <ul>
+        {% for trip in trip_list %}
+            <li><a href="{% url 'tripdetail' trip.id %}">{{ trip }}</a></p></li>
+        {% endfor %}
+    </ul>
+
+  <p><a href="{% url 'main' %}">Inicio</a>      
+  <a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}

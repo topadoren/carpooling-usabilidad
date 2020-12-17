@@ -1,0 +1,60 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Viajero Frecuente - Detalle de Viaje{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <BR />
+  Detalle de Viaje
+  <BR />
+  <BR />
+  
+  <table>
+    <tr>
+  		<td><b>Fecha de creacion: </b></td>
+  		<td> {{ trip.date }} </td>
+  	</tr>
+  	<tr>
+  		<td><b>Desde: </b></td>
+  		<td> {{ trip.fromPlace }} </td>
+  	</tr>
+  	<tr>
+  		<td><b>Hasta: </b></td>
+  		<td> {{ trip.toPlace }} </td>
+  	</tr>
+  		<td><b>Costo Actual: </b></td>
+  		<td> {{ nextamount }} </td>  		
+  	<tr>
+  		<td><b>Rango de Costos (Min - Max): </b></td>
+  		<td> {{ minamount }} - {{ nextamount }} </td>  	
+  	</tr>
+   	<tr>
+  		<td><b>Vehiculo: </b></td>
+  		<td> {{ trip.vehicle }} </td>  	
+  	</tr>
+  	<tr>
+  		<td><b>Conductor: </b></td>
+  		<td> {{ trip.driver }} </td>  	
+  	</tr>
+   	<tr>
+  		<td><b>Cantidad maxima de pasajeros: </b></td>
+  		<td> {{ trip.passengerqty }} </td>  	
+  	</tr>
+  	<tr>
+  		<td><b>Puntaje del conductor: </b></td>
+  		<td> {{ driverrating }} </td>  	
+  	</tr>
+  </table>
+  <BR />
+  <BR />
+  <a href="{% url 'tripjoin' trip.id %}">UNIRSE AL VIAJE</a></p>
+  <BR />
+  
+  <p><a href="{% url 'main' %}">Inicio</a>      
+  <a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}

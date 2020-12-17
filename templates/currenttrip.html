@@ -1,0 +1,51 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Viajero Frecuente - Viaje Actual{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <BR />
+  Viaje Actual
+  <BR />
+  <BR />
+ 
+ <table>
+    <tr>
+  		<td><b>Fecha de creacion: </b></td>
+  		<td> {{ trip.date }} </td>
+  	</tr>
+  	<tr>
+  		<td><b>Desde: </b></td>
+  		<td> {{ trip.fromPlace }} </td>
+  	</tr>
+  	<tr>
+  		<td><b>Hasta: </b></td>
+  		<td> {{ trip.toPlace }} </td>
+  	</tr>
+  		<td><b>Costo Actual por pasajero: </b></td>
+  		<td> {{ currentamount }} </td>  		
+   	<tr>
+  		<td><b>Vehiculo: </b></td>
+  		<td> {{ trip.vehicle }} </td>  	
+  	</tr>
+  	<tr>
+  		<td><b>Conductor: </b></td>
+  		<td> {{ trip.driver }} </td>  	
+  	</tr>
+   	<tr>
+  		<td><b>Cantidad Actual de pasajeros: </b></td>
+  		<td> {{ passengerqty }} / {{ trip.passengerqty }} </td>  	
+  	</tr>
+  </table>
+  <BR />
+  {% if drivermode %}
+  <p><a href="{% url 'tripclose' trip.id %}">FINALIZAR VIAJE!</a></p>  
+  {% endif %} 
+  
+  <p><a href="{% url 'logout' %}">LogOut</a></p>  
+{% else %}
+  <p>No estas logueado.</p>
+  <a href="{% url 'login' %}">LogIn</a>
+{% endif %}
+{% endblock %}
