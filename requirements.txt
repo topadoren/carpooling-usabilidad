@@ -5,3 +5,4 @@ setuptools~=49.2.1
 django_extensions
 gunicorn
 django-heroku
+dj-database-url
