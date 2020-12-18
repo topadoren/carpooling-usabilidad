@@ -71,7 +71,7 @@ def main(request):
     
     quals = Qualification.objects.filter(Q(user = request.user.id))
     
-    userrating = NULL
+    userrating = None
     
     if (quals.count() > 0):
         total = 0
@@ -210,7 +210,6 @@ def tripclose(request, id):
 
     # CLOSE    
     trip = Trip.objects.get(id = id)
-
     tripstatus = TripStatus.objects.get(id = 4)
     trip.status = tripstatus
     trip.save()
@@ -239,7 +238,7 @@ def tripdetail(request, id):
     
     quals = Qualification.objects.filter(Q(user = trip.driver.id))
     
-    driverrating = NULL
+    driverrating = None
     
     if (quals.count() > 0):
         total = 0
