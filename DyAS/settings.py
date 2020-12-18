@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import django_heroku
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,11 +86,18 @@ WSGI_APPLICATION = 'DyAS.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    # COMMENT OUT:
+    # 'default': dj_database_url.config(default='sqlite:////full/path/to/your/database/file.sqlite'),
+    # ADD THIS INSTEAD:
+    'default': dj_database_url.config(default='postgres://puspjhjmiphfwd:eb26f843b242452e3ccdf79eafe87c89ac0fa521542df4f6f420c61b5120674c@ec2-54-159-107-189.compute-1.amazonaws.com:5432/dbm3r1jsevgao1'),
 }
 
 
